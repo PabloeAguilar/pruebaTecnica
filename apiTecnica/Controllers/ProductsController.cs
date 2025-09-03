@@ -4,7 +4,7 @@ using apiTecnica.Models;
 namespace apiTecnica.Controllers
 {
 	[ApiController]
-	[Route("/[controller]")]
+	[Route("/products")]
 	public class ProductsController : ControllerBase
 	{
 		[HttpPost]

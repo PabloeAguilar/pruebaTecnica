@@ -12,7 +12,7 @@ namespace apiTecnica.Services
 			DiscountByPaymentMethod discountPaymentMethod,
 			CreditTerm discountCreditTerm)
 		{
-			var totalPreDiscount = Math.Round(saleItem.ListPriceAtSale * saleItem.ListPriceAtSale, 2);
+			var totalPreDiscount = Math.Round(saleItem.ListPriceAtSale * saleItem.Quantity, 2);
 
 			// Calcular descuentos individuales
 			var discountProductTypeAmount = Math.Round(totalPreDiscount * (discountProductType?.DiscountPercent ?? 0) / 100m, 2);

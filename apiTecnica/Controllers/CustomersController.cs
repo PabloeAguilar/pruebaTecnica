@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using apiTecnica.Models;
 
 [ApiController]
-[Route("/[controller]")]
+[Route("/customers")]
 public class CustomersController : ControllerBase
 {
 	private readonly PruebaTecnicaContext _context;

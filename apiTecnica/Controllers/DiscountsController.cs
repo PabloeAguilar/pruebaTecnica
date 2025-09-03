@@ -5,7 +5,7 @@ using apiTecnica.Models;
 namespace apiTecnica.Controllers
 {
     [ApiController]
-    [Route("/[controller]")]
+    [Route("/discounts")]
     public class DiscountsController : ControllerBase
     {
         public class ProductDiscountDTO
