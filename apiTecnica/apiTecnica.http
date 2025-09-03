@@ -30,7 +30,84 @@ POST {{apiTecnica_HostAddress}}/products
 Content-Type: application/json
 
 {
-  "name": "soap",
-  "productType": "daily",
-  "listPrice": 100
+  "name": "Shirts",
+  "productType": "Clothes",
+  "listPrice": 150
+}
+
+
+###
+### Case A
+POST {{apiTecnica_HostAddress}}/sales
+content-type: application/json
+
+{
+  "customer_id": 1,
+  "payment_method": "Store credit",
+  "items": [
+    {
+      "product_id": 3,
+      "quantity": 1
+    }
+  ]
+}
+
+
+### Case B
+POST {{apiTecnica_HostAddress}}/sales
+content-type: application/json
+
+{
+  "customer_id": 1,
+  "payment_method": "Cash",
+  "items": [
+    {
+      "product_id": 3,
+      "quantity": 1
+    }, 
+        {
+      "product_id": 4,
+      "quantity": 2
+    }
+  ]
+}
+
+
+### Case C
+POST {{apiTecnica_HostAddress}}/sales
+content-type: application/json
+
+{
+  "customer_id": 1,
+  "payment_method": "Cash",
+  "items": [
+    {
+      "product_id": 3,
+      "quantity": 0
+    }, 
+        {
+      "product_id": 4,
+      "quantity": 2
+    }
+  ]
+}
+
+
+### Case C 2
+POST {{apiTecnica_HostAddress}}/sales
+content-type: application/json
+
+{
+  "customer_id": 1,
+  "payment_method": "Cash",
+  "items": [
+    {
+      "product_id": 3,
+      "quantity": 1
+    }, 
+        {
+      "product_id": 4,
+      "quantity": -1
+    }
+  ]
 }
