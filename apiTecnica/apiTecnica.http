@@ -4,3 +4,33 @@ GET {{apiTecnica_HostAddress}}/weatherforecast/
 Accept: application/json
 
 ###
+
+POST {{apiTecnica_HostAddress}}/sales
+content-type: application/json
+
+{
+  "customer_id": 1,
+  "payment_method": "Store credit",
+  "items": [
+    {
+      "product_id": 1,
+      "quantity": 0
+    }
+  ]
+}
+
+
+####################
+
+GET {{apiTecnica_HostAddress}}/sales
+
+
+###
+POST {{apiTecnica_HostAddress}}/products
+Content-Type: application/json
+
+{
+  "name": "soap",
+  "productType": "daily",
+  "listPrice": 100
+}

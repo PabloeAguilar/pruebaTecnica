@@ -3,22 +3,22 @@ using apiTecnica.Models;
 
 namespace apiTecnica.Controllers
 {
-	[ApiController]
-	[Route("/products")]
-	public class ProductsController : ControllerBase
-	{
-		[HttpPost]
-		public IActionResult CreateProduct([FromBody] ProductCreateDto dto)
-		{
-			if (string.IsNullOrWhiteSpace(dto.Name) || string.IsNullOrWhiteSpace(dto.ProductType))
-			{
-				return BadRequest("Name and ProductType are required.");
-			}
+    [ApiController]
+    [Route("/products")]
+    public class ProductsController : ControllerBase
+    {
+        [HttpPost]
+        public IActionResult CreateProduct([FromBody] ProductCreateDto dto)
+        {
+            if (string.IsNullOrWhiteSpace(dto.Name) || string.IsNullOrWhiteSpace(dto.ProductType))
+            {
+                return BadRequest("Name and ProductType are required.");
+            }
             if (dto.ListPrice <= 0)
             {
                 return BadRequest("Price can't be equal or less than 0");
             }
-			using (var context = new PruebaTecnicaContext())
+            using (var context = new PruebaTecnicaContext())
             {
                 var productType = context.ProductTypes.FirstOrDefault(pt => pt.Name == dto.ProductType);
                 if (productType == null)
@@ -42,13 +42,31 @@ namespace apiTecnica.Controllers
                     list_price = decimal.Round(product.ListPrice, 2)
                 });
             }
-		}
+        }
 
         public class ProductCreateDto
         {
             public string? Name { get; set; }
             public string? ProductType { get; set; }
             public decimal ListPrice { get; set; }
-		}
-	}
+        }
+        
+        [HttpGet]
+        public IActionResult GetAllProducts()
+        {
+            using (var context = new PruebaTecnicaContext())
+            {
+                var products = context.Products
+                    .Select(p => new
+                    {
+                        id = p.ProductId,
+                        name = p.Name,
+                        product_type = p.ProductType.Name,
+                        list_price = decimal.Round(p.ListPrice, 2)
+                    })
+                    .ToList();
+                return Ok(products);
+            }
+        }
+    }
 }
